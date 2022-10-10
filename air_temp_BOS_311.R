@@ -21,8 +21,10 @@
 #Create a branch in RStudio: https://r-bio.github.io/intro-git-rstudio/#:~:text=RStudio%20can't%20create%20branches,git%20checkout%20%2Db%20new%2Dbranch
 
 #DATA PREPARATION#
+download <- getURL("")
+BOS311_2022 <- read.csv (text = download)
 #Import Excel data to RStudio (data read into a Tibble)
-BOS311_2022 <- read_excel("C:/Users/Kate PC/Downloads/BOS311_2022.xlsx")
+#BOS311_2022 <- read_excel("C:/Users/Kate PC/Downloads/BOS311_2022.xlsx")
 #View Excel data in new window 
 View(BOS311_2022)
 #Excel/Tibble --> R Data Frame using data.frame(Excel_import_name)
@@ -56,6 +58,3 @@ View(new_df)
 #NOTE: January 1 was a Saturday in 2022, so it will show 52 as the result. 
 #NOTE: January 3-January 10 will be the first week of 2022.
 
-#Testing after git pull/push issue
-#Testing because it happened again
-#Third time's the charm
