@@ -50,3 +50,4 @@ View(new_df)
 #NOTE: For the ISOWEEK function, the week starts on Monday. As January 1 was a Saturday in 2022, when you use this function, it will show 52 as the result. January 3-January 10 will be the first week of 2022.
 
 #TESTING#
+#Added Kate to test GitHub integration on Mac
