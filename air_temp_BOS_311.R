@@ -5,7 +5,7 @@
   #BOS 311: https://data.boston.gov/dataset/311-service-requests/resource/81a7b022-f8fc-4da5-80e4-b160058ca207
   #NOAA Boston Logan (Avg Daily Air Temp): https://www.ncdc.noaa.gov/cdo-web/search
 
-#Required libraries: readxl or rcurl, dplyr, lubridate
+#Required libraries: dplyr, lubridate
 #Source 1: https://www.tutorialkart.com/r-tutorial/import-excel-data-into-r-dataframe/#:~:text=To%20read%20Excel%20Data%20into,frame()%20function.&text=In%20the%20above%20example%2C%20when,is%20read%20into%20a%20tibble.
 #Source 2: https://sparkbyexamples.com/r-programming/remove-column-in-r/#remove-columns-by-using-dplyr-functions
 #Source 3: https://stackoverflow.com/questions/23089895/how-to-remove-time-field-string-from-a-date-as-character-variable
@@ -13,27 +13,31 @@
 #Source 5: https://statisticsglobe.com/replace-entire-data-frame-column-r
 #Source 6: https://www.infoworld.com/article/3454356/how-to-merge-data-in-r-using-r-merge-dplyr-or-datatable.html
 #Source 7: https://stackoverflow.com/questions/44445910/summarize-weekly-average-using-daily-data-in-r
-#Source 8: https://www.programmingr.com/examples/read-csv-web/
-#Source 9: https://statisticsglobe.com/mean-by-group-in-r
+#Source 8: https://statisticsglobe.com/mean-by-group-in-r
+#Source 9: 
 
 #NOTES
 #Save > Stage > Commit > $ git push
 #Create a branch in RStudio: https://r-bio.github.io/intro-git-rstudio/#:~:text=RStudio%20can't%20create%20branches,git%20checkout%20%2Db%20new%2Dbranch
 
 #DATA PREPARATION#
-#Import Excel data to RStudio (data read into a Tibble)
-BOS311_2022 <- read_excel("C:/Users/Kate PC/Downloads/BOS311_2022.xlsx")
-#View Excel data in new window 
+#Download CSV from web page --> Data Frame
+download <- read.csv("https://data.boston.gov/dataset/8048697b-ad64-4bfc-b090-ee00169f2323/resource/81a7b022-f8fc-4da5-80e4-b160058ca207/download/tmpfgyy0wmu.csv")
+#Rename variable 
+BOS311_2022 <- download
+#View data frame in new window 
 View(BOS311_2022)
 #Excel/Tibble --> R Data Frame using data.frame(Excel_import_name)
-create_df = data.frame(BOS311_2022)
+create_df <- BOS311_2022
 #View Data Frame in new window
 View(create_df)
 #Remove columns using select()
 new_df <- create_df %>% select(-c(submittedphoto, closedphoto))
 View(new_df)
 #Join Avg air temp per day to rodent sighting data using open_dt
-AirTemp <- read_excel("C:/Users/Kate PC/Downloads/AirTemp_10-5_2022.xlsx")
+#AirTemp <- read_excel("C:/Users/Kate PC/Downloads/AirTemp_10-5_2022.xlsx")
+download2 <- getURL("")
+AirTemp <- read.csv (text = download2)
 View(AirTemp)
 #Convert open_dt from BOS 311 column to vector  ; new_vec <- df$column_name
 open_dt_vec <- new_df$open_dt
