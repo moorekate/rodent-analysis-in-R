@@ -36,8 +36,7 @@ new_df <- create_df %>% select(-c(submittedphoto, closedphoto))
 View(new_df)
 #Join Avg air temp per day to rodent sighting data using open_dt
 #AirTemp <- read_excel("C:/Users/Kate PC/Downloads/AirTemp_10-5_2022.xlsx")
-download2 <- getURL("")
-AirTemp <- read.csv (text = download2)
+AirTemp <- read. ("https://github.com/moorekate/rodent-analysis-in-R/raw/main/AirTemp_10-5_2022.xlsx")
 View(AirTemp)
 #Convert open_dt from BOS 311 column to vector  ; new_vec <- df$column_name
 open_dt_vec <- new_df$open_dt
