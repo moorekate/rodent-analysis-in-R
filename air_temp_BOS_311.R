@@ -5,7 +5,7 @@
   #BOS 311: https://data.boston.gov/dataset/311-service-requests/resource/81a7b022-f8fc-4da5-80e4-b160058ca207
   #NOAA Boston Logan (Avg Daily Air Temp): https://www.ncdc.noaa.gov/cdo-web/search
 
-#Required libraries: dplyr, lubridate
+#Required libraries: readr, dplyr, lubridate
 #Source 1: https://www.tutorialkart.com/r-tutorial/import-excel-data-into-r-dataframe/#:~:text=To%20read%20Excel%20Data%20into,frame()%20function.&text=In%20the%20above%20example%2C%20when,is%20read%20into%20a%20tibble.
 #Source 2: https://sparkbyexamples.com/r-programming/remove-column-in-r/#remove-columns-by-using-dplyr-functions
 #Source 3: https://stackoverflow.com/questions/23089895/how-to-remove-time-field-string-from-a-date-as-character-variable
@@ -14,7 +14,7 @@
 #Source 6: https://www.infoworld.com/article/3454356/how-to-merge-data-in-r-using-r-merge-dplyr-or-datatable.html
 #Source 7: https://stackoverflow.com/questions/44445910/summarize-weekly-average-using-daily-data-in-r
 #Source 8: https://statisticsglobe.com/mean-by-group-in-r
-#Source 9: 
+#Source 9: https://stackoverflow.com/questions/14441729/read-a-csv-from-github-into-r
 
 #NOTES
 #Save > Stage > Commit > $ git push
@@ -35,8 +35,7 @@ View(create_df)
 new_df <- create_df %>% select(-c(submittedphoto, closedphoto))
 View(new_df)
 #Join Avg air temp per day to rodent sighting data using open_dt
-#AirTemp <- read_excel("C:/Users/Kate PC/Downloads/AirTemp_10-5_2022.xlsx")
-AirTemp <- read. ("https://github.com/moorekate/rodent-analysis-in-R/raw/main/AirTemp_10-5_2022.xlsx")
+AirTemp <- read_csv("https://raw.githubusercontent.com/moorekate/rodent-analysis-in-R/main/AirTemp_10-5_2022.csv")
 View(AirTemp)
 #Convert open_dt from BOS 311 column to vector  ; new_vec <- df$column_name
 open_dt_vec <- new_df$open_dt
