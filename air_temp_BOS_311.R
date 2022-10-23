@@ -19,26 +19,23 @@
 #NOTES
 #Save > Stage > Commit > $ git push
 #Create a branch in RStudio: https://r-bio.github.io/intro-git-rstudio/#:~:text=RStudio%20can't%20create%20branches,git%20checkout%20%2Db%20new%2Dbranch
+rm(list=ls()) #Clear all environment variables
 
 #DATA PREPARATION#
-#Download CSV from web page --> Data Frame
-download <- read.csv("https://data.boston.gov/dataset/8048697b-ad64-4bfc-b090-ee00169f2323/resource/81a7b022-f8fc-4da5-80e4-b160058ca207/download/tmpfgyy0wmu.csv")
-#Rename variable 
-BOS311_2022 <- download
+#Download CSV from web page (up to date) --> Data Frame
+BOS311_2022 <- read.csv("https://data.boston.gov/dataset/8048697b-ad64-4bfc-b090-ee00169f2323/resource/81a7b022-f8fc-4da5-80e4-b160058ca207/download/tmpfgyy0wmu.csv")
 #View data frame in new window 
 View(BOS311_2022)
 #Excel/Tibble --> R Data Frame using data.frame(Excel_import_name)
 create_df <- BOS311_2022
 #View Data Frame in new window
 View(create_df)
-#Remove columns using select()
-new_df <- create_df %>% select(-c(submittedphoto, closedphoto))
-View(new_df)
 #Join Avg air temp per day to rodent sighting data using open_dt
+#Import air temp. CSV from GitHub
 AirTemp <- read_csv("https://raw.githubusercontent.com/moorekate/rodent-analysis-in-R/main/AirTemp_10-5_2022.csv")
 View(AirTemp)
 #Convert open_dt from BOS 311 column to vector  ; new_vec <- df$column_name
-open_dt_vec <- new_df$open_dt
+open_dt_vec <- create_df$open_dt
 View(open_dt_vec)
 #Format content of vector as.Date type
 strip_time <- as.Date(open_dt_vec)
