@@ -26,20 +26,24 @@ rm(list=ls()) #Clear all environment variables
 BOS311_2022 <- read.csv("https://data.boston.gov/dataset/8048697b-ad64-4bfc-b090-ee00169f2323/resource/81a7b022-f8fc-4da5-80e4-b160058ca207/download/tmpfgyy0wmu.csv")
 #View data frame in new window 
 View(BOS311_2022)
-#Excel/Tibble --> R Data Frame using data.frame(Excel_import_name)
-create_df <- BOS311_2022
-#View Data Frame in new window
-View(create_df)
+#Excel/Tibble --> R Data Frame ; create_df <- data.frame(BOS311_2022)
+#View Data Frame in new window ; View(create_df)
+
 #Join Avg air temp per day to rodent sighting data using open_dt
-#Import air temp. CSV from GitHub
+
+#Initialize readr package
+library(readr)
+#Import air temp. CSV from GitHub -- this is a snpahot in time 
 AirTemp <- read_csv("https://raw.githubusercontent.com/moorekate/rodent-analysis-in-R/main/AirTemp_10-5_2022.csv")
 View(AirTemp)
+
+#We need the data columns in both datasets to have identical formatting
+#Step 1: Strip the time portion of date-time field out 
 #Convert open_dt from BOS 311 column to vector  ; new_vec <- df$column_name
-open_dt_vec <- create_df$open_dt
-View(open_dt_vec)
+open_dt_vec <- BOS311_2022$open_dt
 #Format content of vector as.Date type
 strip_time <- as.Date(open_dt_vec)
-View(strip_time)
+View(strip_time) #Check that the time is gone
 #Convert vector back to data frame
 as.data.frame(strip_time)
 View(strip_time)
